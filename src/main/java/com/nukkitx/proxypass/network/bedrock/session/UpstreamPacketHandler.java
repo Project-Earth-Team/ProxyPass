@@ -67,6 +67,7 @@ public class UpstreamPacketHandler implements BedrockPacketHandler {
     @Override
     public boolean handle(LoginPacket packet) {
         int protocolVersion = packet.getProtocolVersion();
+        log.debug("Expected Protocol Version: " + packet.getProtocolVersion());
 
         if (protocolVersion != ProxyPass.PROTOCOL_VERSION) {
             PlayStatusPacket status = new PlayStatusPacket();
@@ -126,10 +127,11 @@ public class UpstreamPacketHandler implements BedrockPacketHandler {
     }
 
     private void initializeProxySession() {
+        log.debug("Protocol Version: " + ProxyPass.PROTOCOL_VERSION);
         log.debug("Initializing proxy session");
         BedrockClient client = proxy.newClient();
         client.setRakNetVersion(10);
-        client.connect(proxy.getTargetAddress()).whenComplete((downstream, throwable) -> {
+        client.directConnect(proxy.getTargetAddress()).whenComplete((downstream, throwable) -> {
             if (throwable != null) {
                 log.error("Unable to connect to downstream server " + proxy.getTargetAddress(), throwable);
                 return;
