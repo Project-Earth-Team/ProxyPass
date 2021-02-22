@@ -120,7 +120,7 @@ public class DownstreamPacketHandler implements BedrockPacketHandler {
     }
 
     private void dumpCreativeItems(ItemData[] contents) {
-        List<CreativeItemEntry> entries = new ArrayList<>();
+        /*List<CreativeItemEntry> entries = new ArrayList<>();
         for (ItemData data : contents) {
             int runtimeId = data.getId();
             String id = this.itemEntries.get(runtimeId).getIdentifier();
@@ -142,7 +142,7 @@ public class DownstreamPacketHandler implements BedrockPacketHandler {
 
         CreativeItems items = new CreativeItems(entries);
 
-        proxy.saveJson("creative_items.json", items);
+        proxy.saveJson("creative_items.json", items);*/
     }
 
     @Override
